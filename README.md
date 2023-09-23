@@ -6,6 +6,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+## code sandbox 링크 사용법
+
+`npm ci`
+
+혹시 필요한 패키지가 설치되어 있지 않을 수 있으니 먼저 `npm ci` 이후 `npm start` 를 통해 실행 가능
+
 ### `npm start`
 
 Runs the app in the development mode.\
