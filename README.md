@@ -6,6 +6,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `npm ci`
+필요한 패키지가 설치되어 있지 않다면 `npm ci` 실행
+
 ### `npm start`
 
 Runs the app in the development mode.\
