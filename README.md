@@ -6,8 +6,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+<<<<<<< HEAD
 ### `npm ci`
 필요한 패키지가 설치되어 있지 않다면 `npm ci` 실행
+=======
+## code sandbox 링크 사용법
+
+`npm ci`
+
+혹시 필요한 패키지가 설치되어 있지 않을 수 있으니 먼저 `npm ci` 이후 `npm start` 를 통해 실행 가능
+>>>>>>> 6b8550bcfbb133a04c6ede646982c300d4d9d023
 
 ### `npm start`
 
