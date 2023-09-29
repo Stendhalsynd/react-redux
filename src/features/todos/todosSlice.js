@@ -18,31 +18,19 @@ export const todosSlice = createSlice({
   initialState,
   reducers: {
     todoAdded: (state, action) => {
-      state.todos.push({
-        id: nextTodoId(state.todos),
-        text: action.payload,
-        completed: false,
-      });
+      state.todos = todo_added(state.todos, action.payload);
     },
     todoToggled: (state, action) => {
-      const toggledTodo = state.todos.find(
-        (todo) => todo.id === action.payload
-      );
-      if (toggledTodo) {
-        toggledTodo.completed = !toggledTodo.completed;
-      }
+      state.todos = todo_toggled(state.todos, action.payload);
     },
     todoDeleted: (state, action) => {
-      state.todos = state.todos.filter((todo) => todo.id !== action.payload);
+      state.todos = todo_deleted(state.todos, action.payload);
     },
     allCompleted: (state) => {
-      state.todos = state.todos.map((todo) => ({
-        ...todo,
-        completed: true,
-      }));
+      state.todos = todo_all_completed(state.todos);
     },
     completedCleared: (state) => {
-      state.todos = state.todos.filter((todo) => !todo.completed);
+      state.todos = todo_completed_cleared(state.todos);
     },
   },
 });
@@ -50,10 +38,7 @@ export const todosSlice = createSlice({
 export const maxId = (todos) =>
   todos.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1;
 
-export const todos = (state) => state.todos;
-
-export const completedTodos = (state) =>
-  state.todos.filter((todo) => todo.completed === true);
+export const todos = (state) => state.todos.todos;
 
 export const {
   todoAdded,
@@ -64,3 +49,39 @@ export const {
 } = todosSlice.actions;
 
 export default todosSlice.reducer;
+
+function todo_added(todos, text) {
+  const newTodos = todos.slice();
+  newTodos.push({
+    id: nextTodoId(todos),
+    text,
+    completed: false,
+  });
+  return newTodos;
+}
+
+function todo_toggled(todos, id) {
+  const newTodos = todos.slice();
+  const newToggledTodo = newTodos.find((todo) => todo.id === id);
+  if (newToggledTodo) newToggledTodo.completed = !newToggledTodo.completed;
+
+  return newTodos;
+}
+
+function todo_deleted(todos, id) {
+  const newTodos = todos.slice();
+  return newTodos.filter((todo) => todo.id !== id);
+}
+
+function todo_all_completed(todos) {
+  const newTodos = todos.slice();
+  return newTodos.map((todo) => ({
+    ...todo,
+    completed: true,
+  }));
+}
+
+function todo_completed_cleared(todos) {
+  const newTodos = todos.slice();
+  return newTodos.filter((todo) => !todo.completed);
+}

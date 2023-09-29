@@ -16,8 +16,9 @@ import {
 
 export function Todo() {
   const dispatch = useDispatch();
-  const todoList = useSelector(todos).todos;
+  const todoList = useSelector(todos);
   const currentStatus = useSelector(filterStatus);
+
   const [textInput, setTextInput] = useState("");
 
   const resultTodos = (currentStatus) => {
@@ -30,6 +31,8 @@ export function Todo() {
         return todoList;
     }
   };
+
+  console.log("resultTodos : ", resultTodos(currentStatus));
 
   const titleStyle = {
     padding: "15px",
